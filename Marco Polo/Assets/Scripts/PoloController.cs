@@ -22,6 +22,7 @@ public class PoloController : MonoBehaviour
     }
 
     void moveCube() {
+        // Randomize force and apply to a direction on the cube
         int num = Random.Range(MIN_RANGE, MAX_RANGE);
         Vector3 force = getRandomizedVector(num, 2000);
         rigidbody.AddForce(force);
