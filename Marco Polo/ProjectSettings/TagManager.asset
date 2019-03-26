@@ -7,6 +7,7 @@ TagManager:
   - polo
   - dev_light
   - obstacle
+  - canvas
   layers:
   - Default
   - TransparentFX

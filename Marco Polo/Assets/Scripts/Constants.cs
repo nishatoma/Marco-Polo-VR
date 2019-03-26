@@ -11,12 +11,19 @@ public class Constants
     public const string SOUND_MARCO = "sound_marco";
     public const string SOUND_POLO = "sound_polo";
 
+    // Scene names
+    public const string SCENE_NAME = "SampleScene";
+
     // Tags
     public const string TAG_POLO = "polo";
     public const string TAG_OBSTACLE = "obstacle";
+    public const string TAG_CANVAS = "canvas";
 
     // Numbers
     public const int MAX_RANGE = 5;
     public const int MIN_RANGE = 1;
     public const int SPEED_POLO = 1000;
+
+    // Time
+    public const int WAVE_LIFE_TIME = 10;
 }

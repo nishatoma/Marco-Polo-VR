@@ -35,8 +35,12 @@ public class PoloController : MonoBehaviour {
     IEnumerator waiter() {
         while (true) {
             moveCube();
-            //Wait for 5 seconds
-            yield return new WaitForSecondsRealtime(5);
+            //Wait for 4 seconds
+            yield return new WaitForSecondsRealtime(4);
         }
+    }
+
+    void stopMovingPolo() {
+        StopCoroutine(waiter());
     }
 }
