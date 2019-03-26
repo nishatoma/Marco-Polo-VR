@@ -2,24 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoloController : MonoBehaviour
-{
-    Rigidbody rigidbody;
-    int MAX_RANGE = 5;
-    int MIN_RANGE = 1;
-
+public class PoloController : MonoBehaviour {
+    Rigidbody rb;
+    
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = gameObject.GetComponent<Rigidbody>();
+        rb = gameObject.GetComponent<Rigidbody>();
         StartCoroutine(waiter());
     }
 
     void moveCube() {
         // Randomize force and apply to a direction on the cube
-        int num = Random.Range(MIN_RANGE, MAX_RANGE);
-        Vector3 force = getRandomizedVector(num, 2000);
-        rigidbody.AddForce(force);
+        int num = Random.Range(Constants.MIN_RANGE, Constants.MAX_RANGE);
+        Vector3 force = getRandomizedVector(num, Constants.SPEED_POLO);
+        rb.AddForce(force);
     }
 
     Vector3 getRandomizedVector(int num, int multiplier) {
@@ -38,9 +35,8 @@ public class PoloController : MonoBehaviour
     IEnumerator waiter() {
         while (true) {
             moveCube();
-            //Wait for 4 seconds
-            yield return new WaitForSecondsRealtime(3);
-            // moveCube();
+            //Wait for 5 seconds
+            yield return new WaitForSecondsRealtime(5);
         }
     }
 }

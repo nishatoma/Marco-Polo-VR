@@ -14,4 +14,9 @@ public class Constants
     // Tags
     public const string TAG_POLO = "polo";
     public const string TAG_OBSTACLE = "obstacle";
+
+    // Numbers
+    public const int MAX_RANGE = 5;
+    public const int MIN_RANGE = 1;
+    public const int SPEED_POLO = 1000;
 }
