@@ -15,12 +15,6 @@ public class PoloController : MonoBehaviour
         StartCoroutine(waiter());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void moveCube() {
         // Randomize force and apply to a direction on the cube
         int num = Random.Range(MIN_RANGE, MAX_RANGE);
