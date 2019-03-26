@@ -10,6 +10,7 @@ public class Constants
     // Sound source names
     public const string SOUND_MARCO = "sound_marco";
     public const string SOUND_POLO = "sound_polo";
+    public const string SOUND_VICTORY = "sound_victory";
 
     // Scene names
     public const string SCENE_NAME = "SampleScene";
