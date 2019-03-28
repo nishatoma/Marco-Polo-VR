@@ -21,10 +21,12 @@ public class HandController : MonoBehaviour
     }
 
     void LateUpdate() {
-        triggerCanvas();
+       // triggerCanvas();
     }
 
-    
+    void Update() {
+        triggerCanvas();
+    }
 
     void OnCollisionEnter(Collision collision) {
 
@@ -33,7 +35,7 @@ public class HandController : MonoBehaviour
             pausePoloSounds();
             stopMovingPolo(collision);
             playVictorySound();
-            Invoke("poloWasFound", 6);
+            Invoke("poloWasFound", 3);
         } else if (collision.gameObject.tag.Equals(Constants.TAG_OBSTACLE)) {
             createWaveAtCollisionPoint(collision);
             playMarco();
