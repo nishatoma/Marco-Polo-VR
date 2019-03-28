@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using OVR;
 
 public class HandController : MonoBehaviour
 {
@@ -26,6 +27,11 @@ public class HandController : MonoBehaviour
 
     void Update() {
         triggerCanvas();
+        if (OVRInput.GetDown(OVRInput.Button.Two)) {
+            playMarco();
+            Invoke("playPoloSound", 1);
+            // Add a cooldown
+        }
     }
 
     void OnCollisionEnter(Collision collision) {
