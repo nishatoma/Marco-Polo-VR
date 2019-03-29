@@ -114,6 +114,8 @@ public class HandController : MonoBehaviour
 		hapticsClip = new OVRHapticsClip (thudSound.clip);
 		hapticsClipLength = thudSound.clip.length;
 
+        Invoke("playThudSound", 3);
+
 		if (Time.time < hapticsTimeout)
 			return;
 
