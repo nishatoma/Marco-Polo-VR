@@ -23,7 +23,8 @@ public class Constants
     // Numbers
     public const int MAX_RANGE = 5;
     public const int MIN_RANGE = 1;
-    public const int SPEED_POLO = 1000;
+    // Polo Speed
+    public const int SPEED_POLO = 2000;
 
     // Time
     public const int WAVE_LIFE_TIME = 10;

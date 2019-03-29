@@ -7,7 +7,7 @@ using OVR;
 public class HandController : MonoBehaviour
 {
     public GameObject wave;
-    public AudioSource thudSound;
+    public GameObject thudSound;
     GameObject marcoSound;
     private Canvas canvas;
     private LineRenderer line;
@@ -25,7 +25,8 @@ public class HandController : MonoBehaviour
         line = GameObject.Find("Line").GetComponent<LineRenderer>();
 
         line.enabled = false;
-        canvas.enabled = false;
+        canvas.gameObject.SetActive(false);
+        
        
     }
 
@@ -52,10 +53,11 @@ public class HandController : MonoBehaviour
             Invoke("poloWasFound", 3);
         } else if (collision.gameObject.tag.Equals(Constants.TAG_OBSTACLE)) {
             createWaveAtCollisionPoint(collision);
-            playMarco();
             PlayHaptics();
+            playThud();
             Invoke("playPoloSound", 1);
         } else {
+            playThud();
             PlayHaptics();
         }
     }
@@ -75,7 +77,7 @@ public class HandController : MonoBehaviour
     }
 
     void playThud() {
-        thudSound.Play();
+        thudSound.GetComponent<AudioSource>().Play();
     }
 
     void pausePoloSounds() {
@@ -90,7 +92,8 @@ public class HandController : MonoBehaviour
 
     void triggerCanvas() {
         if (poloFound) {
-            canvas.enabled = true;
+            // canvas.enabled = true;
+            canvas.gameObject.SetActive(true);
             line.enabled = true;
         } 
     }
@@ -111,10 +114,10 @@ public class HandController : MonoBehaviour
     void PlayHaptics()
 	{
 
-		hapticsClip = new OVRHapticsClip (thudSound.clip);
-		hapticsClipLength = thudSound.clip.length;
+		hapticsClip = new OVRHapticsClip (thudSound.GetComponent<AudioSource>().clip);
+		hapticsClipLength = thudSound.GetComponent<AudioSource>().clip.length;
 
-        Invoke("playThudSound", 3);
+        // // Invoke("playThudSound", 3);
 
 		if (Time.time < hapticsTimeout)
 			return;
