@@ -7,10 +7,18 @@ using OVR;
 public class HandController : MonoBehaviour
 {
     public GameObject wave;
+    public AudioSource thudSound;
     GameObject marcoSound;
     private Canvas canvas;
     private LineRenderer line;
     bool poloFound = false;
+
+    public OVRInput.Controller controller;
+	private AudioSource cachedSource;
+	private OVRHapticsClip hapticsClip;
+	private float hapticsClipLength;
+	private float hapticsTimeout;
+    
 
     void Start() {
         canvas = GameObject.FindGameObjectWithTag(Constants.TAG_CANVAS).GetComponent<Canvas>();
@@ -45,7 +53,10 @@ public class HandController : MonoBehaviour
         } else if (collision.gameObject.tag.Equals(Constants.TAG_OBSTACLE)) {
             createWaveAtCollisionPoint(collision);
             playMarco();
+            PlayHaptics();
             Invoke("playPoloSound", 1);
+        } else {
+            PlayHaptics();
         }
     }
 
@@ -61,6 +72,10 @@ public class HandController : MonoBehaviour
     void playMarco() {
         marcoSound = GameObject.Find(Constants.SOUND_MARCO);
         marcoSound.GetComponent<AudioSource>().Play();
+    }
+
+    void playThud() {
+        thudSound.Play();
     }
 
     void pausePoloSounds() {
@@ -92,4 +107,19 @@ public class HandController : MonoBehaviour
     void poloWasFound() {
         poloFound = true;
     }
+
+    void PlayHaptics()
+	{
+
+		hapticsClip = new OVRHapticsClip (thudSound.clip);
+		hapticsClipLength = thudSound.clip.length;
+
+		if (Time.time < hapticsTimeout)
+			return;
+
+		hapticsTimeout = Time.time + hapticsClipLength;
+        // Vibrate both left and right controllers.
+		OVRHaptics.LeftChannel.Preempt(hapticsClip);
+		OVRHaptics.RightChannel.Preempt(hapticsClip);
+	}
 }
